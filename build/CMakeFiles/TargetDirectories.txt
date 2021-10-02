@@ -1,6 +1,0 @@
-/home/ding/Documents/code_check_tools/build/CMakeFiles/install/strip.dir
-/home/ding/Documents/code_check_tools/build/CMakeFiles/install/local.dir
-/home/ding/Documents/code_check_tools/build/CMakeFiles/install.dir
-/home/ding/Documents/code_check_tools/build/CMakeFiles/list_install_components.dir
-/home/ding/Documents/code_check_tools/build/CMakeFiles/rebuild_cache.dir
-/home/ding/Documents/code_check_tools/build/CMakeFiles/edit_cache.dir
