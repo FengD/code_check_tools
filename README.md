@@ -21,7 +21,7 @@ code file lines too large check
 2. Define the `CODE_CHECK_EXCLUDE_LIST` exclude folder list if need, for excample `export CODE_CHECK_EXCLUDE_LIST=<folder1>,<folder2>,...`.
 3. `code_check.sh help` print the help list.
 
-```
+``` shell
 Usage:
     ./code_check.sh [OPTION]
 
