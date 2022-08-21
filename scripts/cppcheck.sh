@@ -39,8 +39,9 @@ fi
 
 # 2. All Module Check
 set -ue
-echo ${CHECK_CMD} 
-${CHECK_CMD} ${WORKSPACE} 2> $RESULT_FILE_PATH
+FILE_LIST=`find ${WORKSPACE} -regex '.*\.c\|.*\.cpp\|.*\.cc\|.*\.tpp\|.*\.txx\|.*\.c++\|.*\.cxx|.*\.hpp'`
+echo ${CHECK_CMD}
+${CHECK_CMD} ${FILE_LIST} 2> $RESULT_FILE_PATH
 ERRORS=`sed -n '$=' $RESULT_FILE_PATH`
 ERRORS_NB=0
 if [[ "$ERRORS" != "" ]];then

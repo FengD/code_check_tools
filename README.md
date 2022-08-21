@@ -7,6 +7,20 @@ static check
 ## cpplint
 code style check
 
+## pylint
+python code style check
+### 1. how to use
+
+```shell
+
+export WORKSPACE=/path/to/your_project_for_check
+# if you want to exclude the subdir in the root of your poject, write the dirname, separated by commas.
+export CODE_CHECK_EXCLUDE_LIST=test,ci
+./code_check.sh pylint
+
+```
+> Notes: this scripts only check the python package in your project so far.
+
 ## cpplizard
 circle complexity check
 

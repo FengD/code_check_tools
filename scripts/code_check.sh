@@ -63,6 +63,16 @@ function run_lint() {
     fi
 }
 
+function run_pylint() {
+    ${TOOL_PATH}/pylint.sh
+    if [ $? -eq 0 ]; then
+        success 'Pylint passed!'
+    else
+        fail  "Lint failes!"
+        exit 1
+    fi
+}
+
 function run_check() {
     ${TOOL_PATH}/cppcheck.sh
     if [ $? -eq 0 ]; then
@@ -109,6 +119,7 @@ function print_usage() {
 
     echo -e "\n${RED}Options${NO_COLOR}:
     ${BLUE}lint${NO_COLOR}: run the code style check
+    ${BLUE}pylint${NO_COLOR}: run the code style check for python
     ${BLUE}check${NO_COLOR}: run the code static check
     ${BLUE}lizard${NO_COLOR}: run the code cyclomatic complexity check
     ${BLUE}redundant${NO_COLOR}: run the code redundant check
@@ -154,6 +165,11 @@ function main() {
             check_workspace
             check_exclude
             run_lint
+            ;;
+        pylint)
+            check_workspace
+            check_exclude
+            run_pylint
             ;;
         check)
             check_workspace
