@@ -37,7 +37,32 @@ Options:
     exclude: show the exclude file list
 ```
 
-# Some practice
+# Some Practice
+
+1.
+   ![](imgs/code_check_ci_pipeline.png)
+
+2.
+   ![](imgs/lint_error.png)
+
+3.
+   ![](imgs/lizard_error.png)
+4.
+   ![](imgs/redundant_error.png)
+
+5.
+   ![](imgs/code_check_gitlab_ci_yaml.png)
+
 
 # Annexe
 
+1.
+   ![](imgs/cpplint_guidance.png)
+
+2.
+   ![](imgs/cppcheck_guidance.png)
+
+3.
+   ![](imgs/lizard_guidance.png)
+4.
+   ![](imgs/redundant_guidance.png)
