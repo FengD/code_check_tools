@@ -18,7 +18,7 @@ if [[ "$CODE_CHECK_EXCLUDE_LIST" != "" ]];then
 fi
 
 LINT_CMD="${TOOL_PATH}/tools/cpplint/cpplint_recursive.py --recursive 
-          --linelength=100 --extensions=h,cpp,hpp,cu,cc --filter=${LINT_FILTER} ${CHECK_EXCLUDE} "
+          --linelength=80 --extensions=h,cpp,hpp,cu,cc --filter=${LINT_FILTER} ${CHECK_EXCLUDE} "
 
 # check result file and folder init
 TMP_FOLDER="/tmp/code_check/cpplint"
