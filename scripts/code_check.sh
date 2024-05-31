@@ -6,6 +6,7 @@ YELLOW='\033[33m'
 NO_COLOR='\033[0m'
 BLUE='\033[0;34m'
 TOOL_PATH=$(dirname "$(readlink -f "$0")")
+VERSION="1.5.0"
 
 function info() {
     (>&2 echo -e "[${WHITE}${BOLD} INFO ${NO_COLOR}] $*")
@@ -52,6 +53,9 @@ function fail() {
     print_delim
 }
 
+function version() {
+    echo -e "${YELLOW}version: ${VERSION}${NO_COLOR}"
+}
 
 function run_lint() {
     ${TOOL_PATH}/cpplint.sh
@@ -114,6 +118,7 @@ function run_redundant() {
 }
 
 function print_usage() {
+    version
     echo -e "\n${RED}Usage${NO_COLOR}:
     .${BOLD}/code_check.sh${NO_COLOR} [OPTION]"
 
@@ -193,6 +198,9 @@ function main() {
             ;;
         exclude)
             echo -e "${BLUE}${CODE_CHECK_EXCLUDE_LIST}"
+            ;;
+        version)
+            version
             ;;
         *)
             print_usage

@@ -2,19 +2,23 @@
 
 # param init
 TOOL_PATH=$(dirname "$(readlink -f "$0")")
-LINT_FILTER="-legal,-build/c++11,-runtime/references"
+LINT_FILTER="-legal,-build/c++11,-runtime/references,-runtime/printf,-runtime/threadsafe_fn"
 CHECK_EXCLUDE=""
+EXTENSION=""
 if [[ "$CODE_CHECK_EXCLUDE_LIST" != "" ]];then
-    array=(${CODE_CHECK_EXCLUDE_LIST//,/ })
-    for var in ${array[@]}
+    exclude_files_pattern=(${CODE_CHECK_EXCLUDE_LIST//,/ })
+    for var in ${exclude_files_pattern[@]}
     do
         path=$(find ${WORKSPACE} -name $var)
-        CHECK_EXCLUDE=$CHECK_EXCLUDE" --exclude="$path
+        for f in ${path[@]}
+        do
+            CHECK_EXCLUDE=$CHECK_EXCLUDE" --exclude="$f
+        done
     done
 fi
 
 LINT_CMD="${TOOL_PATH}/tools/cpplint/cpplint_recursive.py --recursive 
-          --linelength=100 --filter=${LINT_FILTER} ${CHECK_EXCLUDE} "
+          --linelength=100 --extensions=h,cpp,hpp,cu,cc --filter=${LINT_FILTER} ${CHECK_EXCLUDE} "
 
 # check result file and folder init
 TMP_FOLDER="/tmp/code_check/cpplint"

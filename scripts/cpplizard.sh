@@ -1,7 +1,7 @@
 #!/bin/bash
 RED='\033[0;31m'
 CC_THRESHOLD=15
-LEN_THRESHOLD=300
+LEN_THRESHOLD=200
 NB_PARAM_THRESHOLD=7
 LANGUAGE=cpp
 ERROR_THRESHOLD=10000
@@ -15,9 +15,13 @@ if [[ "$CODE_CHECK_EXCLUDE_LIST" != "" ]];then
 fi
 
 EXCLUDE_FILES=""
-for s in ${exclude_files_pattern[@]}
+for var in ${exclude_files_pattern[@]}
 do
-    EXCLUDE_FILES="${EXCLUDE_FILES} -x */${s}/*"
+    path=$(find ${WORKSPACE} -name $var)
+    for f in ${path[@]}
+    do
+        EXCLUDE_FILES="${EXCLUDE_FILES} -x *${f}*"
+    done
 done
 
 TOOL_PATH=$(dirname "$(readlink -f "$0")")

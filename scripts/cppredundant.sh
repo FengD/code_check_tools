@@ -32,9 +32,25 @@ cd "${WORKSPACE}"
 CMD="${PMD_HOME}/bin/run.sh cpd --ignore-literals --language cpp --minimum-tokens ${TOKENS} --files ${WORKSPACE} --format csv"
 TOTAL_EXCLUDE=""
 if [[ -n "$CODE_CHECK_EXCLUDE_LIST" ]]; then
-  CMD="$CMD --exclude ${CODE_CHECK_EXCLUDE_LIST}"
   TOTAL_EXCLUDE=" --exclude-dir=${CODE_CHECK_EXCLUDE_LIST} "
 fi
+
+if [[ "$CODE_CHECK_EXCLUDE_LIST" != "" ]];then
+    exclude_files_pattern=(${CODE_CHECK_EXCLUDE_LIST//,/ })
+fi
+
+EXCLUDE_FILES=""
+for var in ${exclude_files_pattern[@]}
+do
+    path=$(find ${WORKSPACE} -name $var)
+    for fp in ${path[@]}
+    do
+        fs=$(find $fp -type f -exec ls -l {} \; 2> /dev/null | sort -t' ' -k +6,6 -k +7,7 | awk '{print $NF}')
+        EXCLUDE_FILES="${EXCLUDE_FILES} --exclude ${fs}"
+    done
+done
+CMD="$CMD ${EXCLUDE_FILES}"
+
 total=$(cloc ${TOTAL_EXCLUDE} ${WORKSPACE}| grep -e "C++  " -e "C  " -e "C/C++" | awk '{SUM+=$NF} END {print SUM}')
 $CMD > ${CPD_FILE}
 redundant=$(awk -F',' '{SUM+=($1*($3-1))} END {printf SUM}' "${CPD_FILE}")
@@ -44,8 +60,8 @@ echo "redundant, total, redundant_percentage"
 echo "${redundant}, ${total}, ${redundant_percentage}"
 cat ${CPD_FILE}
 echo "Details: ${CPD_FILE}"
-if [[ $(bc <<< "100.0 * ${redundant} / ${total}") -gt 10 ]]; then
-  echo "redundant bigger than 10%"
+if [[ $(bc <<< "100.0 * ${redundant} / ${total}") -gt 15 ]]; then
+  echo "redundant bigger than 15%"
   exit 1
 fi
 

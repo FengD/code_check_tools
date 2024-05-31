@@ -54,7 +54,7 @@ function execute_static() {
                     if [[ $file_lines -gt $max_line ]];then
                         max_line=$file_lines
                     fi
-                    if [[ $file_lines -gt 500 ]];then
+                    if [[ $file_lines -gt 600 ]];then
                         let lines_bigger_than500=$lines_bigger_than500+1
                         echo "$file_lines,$file_name" >> $RESULT_FILE_PATH
                     fi

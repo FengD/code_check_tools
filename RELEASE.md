@@ -6,3 +6,6 @@
 2. add pylint scripts.
 
 # v1.3.0 (20211207) feng.ding
+# v1.4.0 (20220301) feng.ding
+# v1.5.0 (20220509) feng.ding
+1. update script permissions
