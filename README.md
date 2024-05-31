@@ -57,18 +57,18 @@ Options:
 
 # Annexe
 
-1. You could use the $LINT_FILTER to define your custom rules.  
+1. (cpplint) You could use the $LINT_FILTER to define your custom rules.  
    ![](imgs/cpplint_guidance.png)
 
-2. Customized rules could be defined also by $CHECK_FILTER. $CHECK_EXCULUDE could define the files or folders exclude.
+2. (cppcheck) Customized rules could be defined also by $CHECK_FILTER. $CHECK_EXCULUDE could define the files or folders exclude.
    ![](imgs/cppcheck_guidance.png)
 
-3. $CC_THRESHOLD defines the threshold of the circle complexities, you will get a failure if bigger.
+3. (lizard) $CC_THRESHOLD defines the threshold of the circle complexities, you will get a failure if bigger.
    $LEN_THRESHOLD defines the threshold of the number of the tokens in one line.
    $NB_PARAM_THRESHOLD defines the threshold of the number of the parameters of one method.
    $ERROR_THRESHOLD if bigger than this, get a failure.
    $NB_THREAD set it to accelerate the execution. 
    ![](imgs/lizard_guidance.png)
    
-4. $TOKENS if there is more than $TOKENS number of a series of continous tokens same in two place of the project. Errors and its place will display.
+4. (redundant) $TOKENS if there is more than $TOKENS number of a series of continous tokens same in two place of the project. Errors and its place will display.
    ![](imgs/redundant_guidance.png)
